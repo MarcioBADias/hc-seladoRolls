@@ -46,11 +46,18 @@ const App = () => {
   }
   return (
     <>
-      <button onClick={() => rolar()}>Abrir Booster</button>
-      {resultado.map((token) => (
-        <img key={token} src={`dwx${token}tk.png`} alt="Token" />
-      ))}
-      <p>{resultado}</p>
+      <div>
+        <button onClick={() => rolar()}>Abrir Booster</button>
+      </div>
+      <div style={{ marginTop: '2rem' }}>
+        {resultado.map((token) => (
+          <img
+            key={crypto.randomUUID()}
+            src={`dwx${token}tk.png`}
+            alt="Token"
+          />
+        ))}
+      </div>
     </>
   )
 }
