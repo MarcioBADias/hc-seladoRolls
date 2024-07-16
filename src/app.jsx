@@ -1,17 +1,42 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const App = () => {
   const [resultado, setResultado] = useState([])
+  const [historico, setHistorico] = useState(new Set())
 
   const rolar = () => {
-    let array = []
-    array.push(formatarNumero(gerarNumeroAleatorio(1, 17)))
-    array.push(formatarNumero(gerarNumeroAleatorio(1, 17)))
-    array.push(formatarNumero(gerarNumeroAleatorio(18, 32)))
-    array.push(formatarNumero(gerarNumeroAleatorio(33, 46)))
-    array.push(formatarNumero(gerarNumeroFinal()))
+    let novoResultado = new Set()
 
-    setResultado(array)
+    while (novoResultado.size < 2) {
+      let num = gerarNumeroAleatorio(1, 17)
+      if (!historico.has(num)) {
+        novoResultado.add(formatarNumero(num))
+      }
+    }
+
+    while (novoResultado.size < 3) {
+      let num = gerarNumeroAleatorio(18, 32)
+      if (!historico.has(num)) {
+        novoResultado.add(formatarNumero(num))
+      }
+    }
+
+    while (novoResultado.size < 4) {
+      let num = gerarNumeroAleatorio(33, 46)
+      if (!historico.has(num)) {
+        novoResultado.add(formatarNumero(num))
+      }
+    }
+
+    while (novoResultado.size < 5) {
+      let num = gerarNumeroFinal()
+      if (!historico.has(num)) {
+        novoResultado.add(num)
+      }
+    }
+
+    setResultado(Array.from(novoResultado))
+    setHistorico(new Set([...historico, ...novoResultado]))
     console.log(resultado)
   }
 
@@ -40,10 +65,11 @@ const App = () => {
   const gerarRange = (start, end) => {
     let array = []
     for (let i = start; i <= end; i++) {
-      array.push(i)
+      array.push(formatarNumero(i))
     }
     return array
   }
+
   return (
     <>
       <div>
