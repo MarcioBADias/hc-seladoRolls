@@ -1,18 +1,45 @@
 import { useState } from 'react'
 
 const App = () => {
-  const [resultado, setResultado] = useState([])
+  const [resultados, setResultados] = useState([])
+  const [historico, setHistorico] = useState(new Set())
+  const [mensagem, setMensagem] = useState('')
 
   const rolar = () => {
-    let array = []
-    array.push(formatarNumero(gerarNumeroAleatorio(1, 17)))
-    array.push(formatarNumero(gerarNumeroAleatorio(1, 17)))
-    array.push(formatarNumero(gerarNumeroAleatorio(18, 32)))
-    array.push(formatarNumero(gerarNumeroAleatorio(33, 46)))
-    array.push(formatarNumero(gerarNumeroFinal()))
+    if (historico.size >= 46) {
+      setMensagem('Acabaram os bonecos')
+      return
+    }
 
-    setResultado(array)
-    console.log(resultado)
+    let novoResultado = new Set()
+
+    while (novoResultado.size < 2) {
+      let num = gerarNumeroAleatorio(1, 17)
+      if (!historico.has(num)) {
+        novoResultado.add(num)
+      }
+    }
+
+    while (novoResultado.size < 3) {
+      let num = gerarNumeroAleatorio(18, 32)
+      if (!historico.has(num)) {
+        novoResultado.add(num)
+      }
+    }
+
+    while (novoResultado.size < 5) {
+      let num = gerarNumeroAleatorio(33, 46)
+      if (!historico.has(num)) {
+        novoResultado.add(num)
+      }
+    }
+
+    // Adiciona o novo resultado formatado ao histórico e ao array de resultados
+    const arrayResultado = Array.from(novoResultado).map(formatarNumero)
+    setResultados((prevResultados) => [...prevResultados, arrayResultado])
+    setHistorico(
+      (prevHistorico) => new Set([...prevHistorico, ...novoResultado]),
+    )
   }
 
   const gerarNumeroAleatorio = (min, max) => {
@@ -23,39 +50,24 @@ const App = () => {
     return numero.toString().padStart(3, '0')
   }
 
-  const gerarNumeroFinal = () => {
-    const opcoes = [
-      ...gerarRange(18, 32),
-      ...gerarRange(47, 70),
-      '037b',
-      '043b',
-      '047b',
-      '051b',
-      '053b',
-    ]
-    const index = Math.floor(Math.random() * opcoes.length)
-    return opcoes[index]
-  }
-
-  const gerarRange = (start, end) => {
-    let array = []
-    for (let i = start; i <= end; i++) {
-      array.push(i)
-    }
-    return array
-  }
   return (
     <>
       <div>
         <button onClick={() => rolar()}>Abrir Booster</button>
       </div>
       <div style={{ marginTop: '2rem' }}>
-        {resultado.map((token) => (
-          <img
-            key={crypto.randomUUID()}
-            src={`dwx${token}tk.png`}
-            alt="Token"
-          />
+        {mensagem && <p>{mensagem}</p>}
+        {resultados.map((resultado, index) => (
+          <div key={index} style={{ marginBottom: '1rem' }}>
+            {resultado.map((token) => (
+              <img
+                key={token}
+                src={`dwx${token}tk.png`}
+                alt="Token"
+                style={{ marginRight: '0.5rem' }}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </>
