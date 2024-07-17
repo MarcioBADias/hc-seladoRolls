@@ -28,7 +28,7 @@ const App = () => {
     }
 
     while (novoResultado.size < 5) {
-      let num = gerarNumeroAleatorio(33, 46)
+      let num = gerarNumeroAleatorio(33, 48)
       if (!historico.has(num)) {
         novoResultado.add(num)
       }
@@ -59,6 +59,7 @@ const App = () => {
         {mensagem && <p>{mensagem}</p>}
         {resultados.map((resultado, index) => (
           <div key={index} style={{ marginBottom: '1rem' }}>
+            <h2>Booster {index + 1}</h2>
             {resultado.map((token) => (
               <img
                 key={token}
