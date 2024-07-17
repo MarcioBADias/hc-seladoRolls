@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 
 const App = () => {
-<<<<<<< HEAD
   const [resultados, setResultados] = useState([])
   const [historico, setHistorico] = useState(new Set())
   const [mensagem, setMensagem] = useState('')
@@ -18,7 +17,7 @@ const App = () => {
       let num = gerarNumeroAleatorio(1, 17)
       if (!historico.has(num)) {
         novoResultado.add(num)
-=======
+
   const [resultado, setResultado] = useState([])
   const [historico, setHistorico] = useState(new Set())
 
@@ -29,16 +28,13 @@ const App = () => {
       let num = gerarNumeroAleatorio(1, 17)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
->>>>>>> bb1193ef51758e760feeffb5e46f5fbed022ac65
       }
     }
 
     while (novoResultado.size < 3) {
       let num = gerarNumeroAleatorio(18, 32)
       if (!historico.has(num)) {
-<<<<<<< HEAD
         novoResultado.add(num)
-=======
         novoResultado.add(formatarNumero(num))
       }
     }
@@ -47,33 +43,26 @@ const App = () => {
       let num = gerarNumeroAleatorio(33, 46)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
->>>>>>> bb1193ef51758e760feeffb5e46f5fbed022ac65
       }
     }
 
     while (novoResultado.size < 5) {
-<<<<<<< HEAD
       let num = gerarNumeroAleatorio(33, 48)
-=======
       let num = gerarNumeroFinal()
->>>>>>> bb1193ef51758e760feeffb5e46f5fbed022ac65
       if (!historico.has(num)) {
         novoResultado.add(num)
       }
     }
 
-<<<<<<< HEAD
     // Adiciona o novo resultado formatado ao histórico e ao array de resultados
     const arrayResultado = Array.from(novoResultado).map(formatarNumero)
     setResultados((prevResultados) => [...prevResultados, arrayResultado])
     setHistorico(
       (prevHistorico) => new Set([...prevHistorico, ...novoResultado]),
     )
-=======
     setResultado(Array.from(novoResultado))
     setHistorico(new Set([...historico, ...novoResultado]))
     console.log(resultado)
->>>>>>> bb1193ef51758e760feeffb5e46f5fbed022ac65
   }
 
   const gerarNumeroAleatorio = (min, max) => {
@@ -83,9 +72,6 @@ const App = () => {
   const formatarNumero = (numero) => {
     return numero.toString().padStart(3, '0')
   }
-
-<<<<<<< HEAD
-=======
   const gerarNumeroFinal = () => {
     const opcoes = [
       ...gerarRange(18, 32),
@@ -107,8 +93,6 @@ const App = () => {
     }
     return array
   }
-
->>>>>>> bb1193ef51758e760feeffb5e46f5fbed022ac65
   return (
     <>
       <div>
