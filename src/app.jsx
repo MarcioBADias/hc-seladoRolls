@@ -6,7 +6,7 @@ const App = () => {
   const [mensagem, setMensagem] = useState('')
 
   const rolar = () => {
-    if (historico.size >= 46) {
+    if (historico.size >= 99) {
       setMensagem('Acabaram os bonecos')
       return
     }
@@ -14,7 +14,7 @@ const App = () => {
     let novoResultado = new Set()
 
     while (novoResultado.size < 2) {
-      let num = gerarNumeroAleatorio(1, 17)
+      let num = gerarNumeroAleatorio(1, 16)
       if (!historico.has(num)) {
         novoResultado.add(num)
 
@@ -25,14 +25,14 @@ const App = () => {
     let novoResultado = new Set()
 
     while (novoResultado.size < 2) {
-      let num = gerarNumeroAleatorio(1, 17)
+      let num = gerarNumeroAleatorio(1, 16)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 3) {
-      let num = gerarNumeroAleatorio(18, 32)
+      let num = gerarNumeroAleatorio(17, 29)
       if (!historico.has(num)) {
         novoResultado.add(num)
         novoResultado.add(formatarNumero(num))
@@ -40,14 +40,14 @@ const App = () => {
     }
 
     while (novoResultado.size < 4) {
-      let num = gerarNumeroAleatorio(33, 46)
+      let num = gerarNumeroAleatorio(30, 41)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 5) {
-      let num = gerarNumeroAleatorio(33, 48)
+      let num = gerarNumeroAleatorio(30, 41)
       let num = gerarNumeroFinal()
       if (!historico.has(num)) {
         novoResultado.add(num)
@@ -74,13 +74,12 @@ const App = () => {
   }
   const gerarNumeroFinal = () => {
     const opcoes = [
-      ...gerarRange(18, 32),
-      ...gerarRange(47, 70),
+      ...gerarRange(17, 29),
+      ...gerarRange(49, 60),
+      '031b',
       '037b',
       '043b',
       '047b',
-      '051b',
-      '053b',
     ]
     const index = Math.floor(Math.random() * opcoes.length)
     return opcoes[index]
@@ -106,8 +105,8 @@ const App = () => {
             {resultado.map((token) => (
               <img
                 key={token}
-                src={`dwx${token}tk.png`}
-                alt="Token"
+                src={`bp${token}tk.png`}
+                alt={`Token ${token}`}
                 style={{ marginRight: '0.5rem' }}
               />
             ))}
