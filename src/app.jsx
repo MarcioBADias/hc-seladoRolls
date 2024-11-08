@@ -105,7 +105,7 @@ const App = () => {
             {resultado.map((token) => (
               <img
                 key={token}
-                src={`bp${token}tk.png`}
+                src={`https://hcunits.net/static/images/set/bp/${token}.png`}
                 alt={`Token ${token}`}
                 style={{ marginRight: '0.5rem' }}
               />
