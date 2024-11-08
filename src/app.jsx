@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const App = () => {
   const [resultados, setResultados] = useState([])
@@ -6,22 +6,11 @@ const App = () => {
   const [mensagem, setMensagem] = useState('')
 
   const rolar = () => {
-    if (historico.size >= 99) {
+    if (historico.size >= 60) {
       setMensagem('Acabaram os bonecos')
       return
     }
 
-    let novoResultado = new Set()
-
-    while (novoResultado.size < 2) {
-      let num = gerarNumeroAleatorio(1, 16)
-      if (!historico.has(num)) {
-        novoResultado.add(num)
-
-  const [resultado, setResultado] = useState([])
-  const [historico, setHistorico] = useState(new Set())
-
-  const rolar = () => {
     let novoResultado = new Set()
 
     while (novoResultado.size < 2) {
@@ -34,7 +23,6 @@ const App = () => {
     while (novoResultado.size < 3) {
       let num = gerarNumeroAleatorio(17, 29)
       if (!historico.has(num)) {
-        novoResultado.add(num)
         novoResultado.add(formatarNumero(num))
       }
     }
@@ -47,22 +35,17 @@ const App = () => {
     }
 
     while (novoResultado.size < 5) {
-      let num = gerarNumeroAleatorio(30, 41)
-      let num = gerarNumeroFinal()
-      if (!historico.has(num)) {
-        novoResultado.add(num)
+      let numFinal = gerarNumeroFinal()
+      if (!historico.has(numFinal)) {
+        novoResultado.add(numFinal)
       }
     }
 
-    // Adiciona o novo resultado formatado ao histórico e ao array de resultados
-    const arrayResultado = Array.from(novoResultado).map(formatarNumero)
+    const arrayResultado = Array.from(novoResultado)
     setResultados((prevResultados) => [...prevResultados, arrayResultado])
     setHistorico(
       (prevHistorico) => new Set([...prevHistorico, ...novoResultado]),
     )
-    setResultado(Array.from(novoResultado))
-    setHistorico(new Set([...historico, ...novoResultado]))
-    console.log(resultado)
   }
 
   const gerarNumeroAleatorio = (min, max) => {
@@ -70,17 +53,14 @@ const App = () => {
   }
 
   const formatarNumero = (numero) => {
+    if ([31, 37, 43, 47].includes(numero)) {
+      return `0${numero}a`
+    }
     return numero.toString().padStart(3, '0')
   }
+
   const gerarNumeroFinal = () => {
-    const opcoes = [
-      ...gerarRange(17, 29),
-      ...gerarRange(49, 60),
-      '031b',
-      '037b',
-      '043b',
-      '047b',
-    ]
+    const opcoes = [...gerarRange(17, 60), '031b', '037b', '043b', '047b']
     const index = Math.floor(Math.random() * opcoes.length)
     return opcoes[index]
   }
@@ -92,10 +72,11 @@ const App = () => {
     }
     return array
   }
+
   return (
     <>
       <div>
-        <button onClick={() => rolar()}>Abrir Booster</button>
+        <button onClick={rolar}>Abrir Booster</button>
       </div>
       <div style={{ marginTop: '2rem' }}>
         {mensagem && <p>{mensagem}</p>}
