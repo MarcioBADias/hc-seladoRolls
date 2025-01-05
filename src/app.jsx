@@ -14,21 +14,21 @@ const App = () => {
     let novoResultado = new Set()
 
     while (novoResultado.size < 2) {
-      let num = gerarNumeroAleatorio(1, 16)
+      let num = gerarNumeroAleatorio(1, 13)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 3) {
-      let num = gerarNumeroAleatorio(17, 29)
+      let num = gerarNumeroAleatorio(14, 22)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 4) {
-      let num = gerarNumeroAleatorio(30, 41)
+      let num = gerarNumeroAleatorio(23, 29)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
@@ -53,14 +53,14 @@ const App = () => {
   }
 
   const formatarNumero = (numero) => {
-    if ([31, 37, 43, 47].includes(numero)) {
+    if ([23, 31, 37].includes(numero)) {
       return `0${numero}a`
     }
     return numero.toString().padStart(3, '0')
   }
 
   const gerarNumeroFinal = () => {
-    const opcoes = [...gerarRange(17, 60), '031b', '037b', '043b', '047b']
+    const opcoes = [...gerarRange(14, 45), '023b', '031b', '037b']
     const index = Math.floor(Math.random() * opcoes.length)
     return opcoes[index]
   }
@@ -86,7 +86,7 @@ const App = () => {
             {resultado.map((token) => (
               <img
                 key={token}
-                src={`https://hcunits.net/static/images/set/bp/${token}.png`}
+                src={`https://hcunits.net/static/images/set/cltr/${token}.png`}
                 alt={`Token ${token}`}
                 style={{ marginRight: '0.5rem' }}
               />
