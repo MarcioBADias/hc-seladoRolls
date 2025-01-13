@@ -7,7 +7,7 @@ const App = () => {
 
   const rolar = () => {
     if (historico.size >= 60) {
-      setMensagem('Acabaram os picks')
+      setMensagem('Acabaram as escolhas')
       return
     }
 
