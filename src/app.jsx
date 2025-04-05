@@ -22,7 +22,7 @@ const App = () => {
     }
 
     // Sorteando 3 números de 16 a 28
-    while (novoResultado.size < 3) {
+    while (novoResultado.size < 4) {
       let num = gerarNumeroAleatorio(16, 28)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
@@ -56,7 +56,7 @@ const App = () => {
   }
 
   const formatarNumero = (numero) => {
-    if ([8, 23, 29, 31].includes(numero)) {
+    if (['08', 17 23, 29, 31].includes(numero)) {
       return `0${numero}a`
     }
     return numero.toString().padStart(3, '0')
