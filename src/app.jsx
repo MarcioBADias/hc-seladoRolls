@@ -37,12 +37,12 @@ const App = () => {
     novoResultado.add(formatarNumero(num))
 
     // Sorteando 1 número final
-    while (novoResultado.size < 5) {
-      let numFinal = gerarNumeroFinal()
-      if (!historico.has(numFinal)) {
-        novoResultado.add(numFinal)
-      }
-    }
+    //while (novoResultado.size < 5) {
+      //let numFinal = gerarNumeroFinal()
+      //if (!historico.has(numFinal)) {
+        //novoResultado.add(numFinal)
+      //}
+    //}
 
     const arrayResultado = Array.from(novoResultado)
     setResultados((prevResultados) => [...prevResultados, arrayResultado])
@@ -62,11 +62,11 @@ const App = () => {
     return numero.toString().padStart(3, '0')
   }
 
-  const gerarNumeroFinal = () => {
-    const opcoes = [...gerarRange(14, 45), '023b', '031b', '037b']
-    const index = Math.floor(Math.random() * opcoes.length)
-    return opcoes[index]
-  }
+  //const gerarNumeroFinal = () => {
+    //const opcoes = [...gerarRange(14, 45), '023b', '031b', '037b']
+    //const index = Math.floor(Math.random() * opcoes.length)
+    //return opcoes[index]
+  //}
 
   const gerarRange = (start, end) => {
     let array = []
