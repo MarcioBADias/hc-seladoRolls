@@ -13,6 +13,7 @@ const App = () => {
 
     let novoResultado = new Set()
 
+    // Sorteando 2 números de 1 a 15
     while (novoResultado.size < 2) {
       let num = gerarNumeroAleatorio(1, 15)
       if (!historico.has(num)) {
@@ -20,6 +21,7 @@ const App = () => {
       }
     }
 
+    // Sorteando 3 números de 16 a 28
     while (novoResultado.size < 3) {
       let num = gerarNumeroAleatorio(16, 28)
       if (!historico.has(num)) {
@@ -27,13 +29,14 @@ const App = () => {
       }
     }
 
-    while (novoResultado.size < 4) {
-      let num = gerarNumeroAleatorio(29, 39)
-      if (!historico.has(num)) {
-        novoResultado.add(formatarNumero(num))
-      }
+    // Sorteando 1 número de 29 a 39, no máximo uma vez por booster
+    let num = gerarNumeroAleatorio(29, 39)
+    while (novoResultado.has(formatarNumero(num)) || historico.has(num)) {
+      num = gerarNumeroAleatorio(29, 39)
     }
+    novoResultado.add(formatarNumero(num))
 
+    // Sorteando 1 número final
     while (novoResultado.size < 5) {
       let numFinal = gerarNumeroFinal()
       if (!historico.has(numFinal)) {
