@@ -56,7 +56,7 @@ const App = () => {
   }
 
   const formatarNumero = (numero) => {
-    if (['08', 17 23, 29, 31].includes(numero)) {
+    if ([8, 17 23, 29, 31].includes(numero)) {
       return `0${numero}a`
     }
     return numero.toString().padStart(3, '0')
