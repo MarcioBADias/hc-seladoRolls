@@ -14,21 +14,21 @@ const App = () => {
     let novoResultado = new Set()
 
     while (novoResultado.size < 2) {
-      let num = gerarNumeroAleatorio(1, 13)
+      let num = gerarNumeroAleatorio(1, 15)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 3) {
-      let num = gerarNumeroAleatorio(14, 22)
+      let num = gerarNumeroAleatorio(16, 28)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
     }
 
     while (novoResultado.size < 4) {
-      let num = gerarNumeroAleatorio(23, 29)
+      let num = gerarNumeroAleatorio(29, 39)
       if (!historico.has(num)) {
         novoResultado.add(formatarNumero(num))
       }
@@ -53,7 +53,7 @@ const App = () => {
   }
 
   const formatarNumero = (numero) => {
-    if ([23, 31, 37].includes(numero)) {
+    if ([08, 23, 29, 31].includes(numero)) {
       return `0${numero}a`
     }
     return numero.toString().padStart(3, '0')
@@ -86,7 +86,7 @@ const App = () => {
             {resultado.map((token) => (
               <img
                 key={token}
-                src={`https://hcunits.net/static/images/set/cltr/${token}.png`}
+                src={`https://hcunits.net/static/images/set/spv/${token}.png`}
                 alt={`Token ${token}`}
                 style={{ marginRight: '0.5rem' }}
               />
